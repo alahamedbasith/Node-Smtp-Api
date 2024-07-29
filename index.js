@@ -23,10 +23,8 @@ app.get('/contact', (req, res) => {
 app.post('/contact', (req, res) => {
   const { name, email, message } = req.body;
 
-  // Process the form data here
   console.log(`Name: ${name}, Email: ${email}, Message: ${message}`);
 
-  // Example: Sending email with Nodemailer (optional)
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -45,14 +43,12 @@ app.post('/contact', (req, res) => {
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.error('Error sending email:', error);
-      return res.status(500).send('Error sending email');
+      return res.status(500).json({ message: 'Error sending email' });
     }
-    res.status(200).send('Email sent successfully');
+    res.status(200).json({ message: 'Email sent successfully' });
   });
-
-  // For testing purposes, you might want to comment out the Nodemailer code and just send the response
-  // res.status(200).send('Form data received');
 });
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
