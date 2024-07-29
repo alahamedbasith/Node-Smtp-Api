@@ -2,7 +2,9 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 
+
 const app = express();
+app.use(bodyParser.json());
 const PORT = process.env.PORT || 4000;
 
 // Middleware to handle CORS
