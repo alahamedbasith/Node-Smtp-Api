@@ -2,9 +2,7 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 
-
 const app = express();
-app.use(bodyParser.json());
 const PORT = process.env.PORT || 4000;
 
 // Middleware to handle CORS
@@ -19,7 +17,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/contact', (req, res) => {
-  res.send('Hello,!');
+  res.send('Hello!');
 });
 
 app.post('/contact', (req, res) => {
@@ -46,6 +44,7 @@ app.post('/contact', (req, res) => {
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
+      console.error('Error sending email:', error);
       return res.status(500).send('Error sending email');
     }
     res.status(200).send('Email sent successfully');
