@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
   res.send('Hello, world!');
 });
 
-app.post('/sendemail', (req, res) => {
+app.post('/contact', (req, res) => {
     const { name, email, message } = req.body;
   
     const transporter = nodemailer.createTransport({
